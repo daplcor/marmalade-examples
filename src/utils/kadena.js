@@ -56,8 +56,7 @@ export const mint = async (
       (use marmalade-v2.util-v1)
       (create-token ${JSON.stringify(
         tId
-      )} ${precision} (read-msg 'uri) (create-policies ${policy}) (read-keyset 'ks)) \n
-      (mint ${JSON.stringify(tId)} (read-msg 'mintTo) (read-keyset 'ks) 1.0)`;
+      )} ${precision} (read-msg 'uri) (create-policies ${policy}) (read-keyset 'ks)) (mint ${JSON.stringify(tId)} (read-msg 'mintTo) (at 'guard (coin.details (read-msg 'mintTo))) 1.0)`;
 
   return sendMintTransaction(
     code,
