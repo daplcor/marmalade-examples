@@ -21,10 +21,8 @@ export const pactCalls = async (code, chain, guard) => {
     .addData("ks", { keys: guard.keys, pred: guard.pred })
     .setNetworkId(network)
     .createTransaction();
-  console.log("tx", tx);
   try {
     const res = await pactClient.dirtyRead(tx);
-    console.log(res);
     return res;
   } catch {
     console.error("Error in pact Call:", error);
@@ -84,11 +82,9 @@ export const sendMintTransaction = async (
   royaltyRecipient,
   royalties
 ) => {
-  console.log("maic", magic);
   const pactClient = createClient(
     `${api}/chainweb/0.0/${network}/chain/${chain}/pact`
   );
-  console.log("envData", envData);
   const k = {
     keys: [...guard.keys],
     pred: guard.pred,
@@ -131,7 +127,6 @@ export const sendMintTransaction = async (
   }
 
   const transaction = tx.createTransaction();
-  console.log("transaction", transaction);
   try {
     const { transactions } = await magic.kadena.signTransactionWithSpireKey(
       transaction
@@ -161,7 +156,6 @@ export const sendCollectionTransaction = async (
   const pactClient = createClient(
     `${api}/chainweb/0.0/${network}/chain/${chain}/pact`
   );
-  console.log("guard", guard);
   const tx = Pact.builder
     .execution(code)
     .addSigner({
@@ -177,10 +171,8 @@ export const sendCollectionTransaction = async (
     .setNetworkId(network)
     .addKeyset("ks", guard.pred, ...guard.keys)
     .createTransaction();
-  console.log("tx send", tx);
   try {
     const { transactions } = await magic.kadena.signTransactionWithSpireKey(tx);
-    console.log("transactions", transactions);
 
     const signedTx = transactions[0];
     const preflightResult = await pactClient.preflight(signedTx);

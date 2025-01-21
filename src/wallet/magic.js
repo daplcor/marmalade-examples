@@ -20,7 +20,6 @@ const magicProvider = {
   connect: async () => {
     try {
       const account = await magic.kadena.loginWithSpireKey();
-      console.log('accoutn', account)
       return {
         status: "success",
         account: {
@@ -37,7 +36,6 @@ const magicProvider = {
   getInfo: async () => {
     try {
       const userInfo = await magic.kadena.getUserInfo();
-      console.log('userInfo', userInfo)
       return userInfo;
     } catch (error) {
       console.error("Error getting Magic account info:", error);

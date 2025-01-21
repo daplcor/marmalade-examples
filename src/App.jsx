@@ -4,7 +4,6 @@ import MintingContainer from './components/MintingContainer';
 
 const App = () => {
   const { walletData, connect } = useWallet();
-console.log("walletData", walletData)
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
       <nav className="bg-white shadow-sm">

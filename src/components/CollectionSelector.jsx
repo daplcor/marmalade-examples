@@ -19,7 +19,6 @@ const CollectionSelector = ({ onSelect }) => {
   }, []);
 
   const handleCreateCollection = async () => {
-    console.log("walletData", walletData);
     if (!walletData.isConnected) return;
   
     try {
